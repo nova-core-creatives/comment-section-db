@@ -1,13 +1,12 @@
 /** @jsx jsx */
 import { useState } from "react";
 import { Comment } from "use-comments";
-import { Box, Button, Label, Input, Textarea, jsx } from "theme-ui";
+import { Box, Button, Label, Textarea, jsx } from "theme-ui";
 
 export interface AddCommentProps {
   onSubmit: (comment: Pick<Comment, "author" | "content">) => void;
 }
 export const AddComment = ({ onSubmit }: AddCommentProps) => {
-  const [username, setUsername] = useState("");
   const [comment, setComment] = useState("");
 
   return (
@@ -16,18 +15,10 @@ export const AddComment = ({ onSubmit }: AddCommentProps) => {
       onSubmit={e => {
         console.log({ e });
         e.preventDefault();
-        onSubmit({ content: comment, author: username });
+        onSubmit({ content: comment});
       }}
     >
-      <Label htmlFor="username">Username</Label>
-      <Input
-        name="username"
-        id="username"
-        placeholder="Jon Doe"
-        value={username}
-        onChange={e => setUsername(e.target.value)}
-        sx={{ mb: 3 }}
-      />
+
       <Label htmlFor="comment">Comment</Label>
       <Textarea
         name="comment"
@@ -41,7 +32,7 @@ export const AddComment = ({ onSubmit }: AddCommentProps) => {
       <Button
         sx={{
           mb: 3,
-          ...((!username || !comment) && {
+          ...((!comment) && {
             bg: "gray",
             pointerEvents: "none"
           })

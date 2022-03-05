@@ -50,7 +50,7 @@ const formatStatus = (status: CommentStatus) => {
 
 const Comments = ({ postId }: { postId: string }) => {
   const { comments, addComment, count, loading } = useComments(
-    "https://wheres-foster.herokuapp.com/v1/graphql",
+    "https://casual-osprey-15.hasura.app/v1/graphql",
     postId
   );
 
